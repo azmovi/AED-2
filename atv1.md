@@ -1,3 +1,15 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_SVG"></script>
 # Trabalho 1 - Levada 
 ```
 Nome: Antônio Cícero Amorim de Azevedo
@@ -39,8 +51,28 @@ $$
 $$
 = x_{n+1} - x_1
 $$
-- Validando a proposta inicial.
+ Validando a proposta inicial.
 
 
 ### 3 - Questão
-
+```py
+def Algo_C(n):
+    a = 100
+    j, k = n, 0
+    while j > 0:
+        while k < j:
+            a += a
+            k += 1
+        j -= 1
+        k = 0
+    return a
+```
+Encontrar o número de operações executadas por essa função e mostrar sua complexidade
+- Número de Operações:
+$$
+t(n) = 1 + 2 + \sum_{j=0}^n(\sum_{k=0}^{j+1}(2k)+2)
+$$
+- Expandindo a equação:
+$$
+t(n) = 3 + \sum_{j=0}^n\sum_{k=0}^{j+1}2k + \sum_{j=0}^n2
+$$
