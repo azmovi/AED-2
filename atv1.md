@@ -1,3 +1,4 @@
+
 # Trabalho 1 - Levada 
 ```
 Nome: Antônio Cícero Amorim de Azevedo
@@ -33,10 +34,6 @@ $$
 $$
 - Cancelando os valores de forma telescópica ficamos com:
 $$
-=\cancel x_{2} + \cancel x_{3} ... + \cancel x_{n-1} + \cancel x_{n} + x_{n + 1} - x_1 - \cancel x_2  - \cancel x_3  ... - \cancel x_{n -1}- \cancel x_{n}
-$$
-- Sobrando apenas:
-$$
 = x_{n+1} - x_1
 $$
  Validando a proposta inicial.
@@ -64,3 +61,68 @@ $$
 $$
 t(n) = 3 + \sum_{j=0}^n\sum_{k=0}^{j+1}2k + \sum_{j=0}^n2
 $$
+- Expansão do duplo somatório:
+$$
+\sum_{j=0}^n\sum_{k=0}^{j+1}2k = 2*0 + 2*1+2*2... +2*(n-1) + 2*n
+$$
+- Dessa forma pode-se observar a soma de n termos de uma P.A de razão  = 2
+$$
+\sum_{j=0}^n\sum_{k=0}^{j+1}2k = \frac{(0+2n)n}{2}
+$$
+$$
+\sum_{j=0}^n\sum_{k=0}^{j+1}2k = \frac{2n^2}{2}
+$$
+$$
+\sum_{j=0}^n\sum_{k=0}^{j+1}2k = n²
+$$
+Substituindo na equação geral e chegando nesse forma reduzida:
+$$
+t(n) = 3 + n^2 + 2n
+$$
+
+E para a complexidade:
+$$
+O(n^2)
+$$
+
+### 4 - Questão
+Complexidade de um script dado as complexidades das funções:
+1. $fn1() = O(1)$
+2. $fn2() = O(1)$
+3. $fn3() = O(n^2)$
+
+```py
+for i in range(n):
+    fn1(i)
+    for j in range(n):
+        fn2(j)
+        for k in range(n):
+            fn3(k)
+```
+- Desenvolvendo a equação geral:
+$$
+t(n) = \sum_{i=0}^n(1 + \sum_{j=0}^n(1 + \sum_{k=0}^n n²))
+$$
+$$
+=\sum_{i=0}^n1 +\sum_{i=0}^n\sum_{j=0}^n(1+\sum_{k=0}^n n²))
+$$
+$$
+=\sum_{i=0}^n 1 +\sum_{i=0}^n\sum_{j=0}^n 1 + \sum_{i=0}^n\sum_{j=0}^n\sum_{k=0}^n n²
+$$
+$$
+= n + n * n + n * n * n* n²
+$$
+$$
+= n + n² + n^5
+$$
+A complexidade se da na ordem de $O(n⁴)$
+
+
+### 5 - Questão
+A afirmação é falsa, mesmo que a complexidade do algoritmo B seja menor que a do algoritmo A
+um algoritmo apresenta outros fatores que influenciam na sua velocidade total.
+
+
+
+
+
