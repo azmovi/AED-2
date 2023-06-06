@@ -1,9 +1,7 @@
 
 # Trabalho 1 - Levada 
-```
-Nome: Antônio Cícero Amorim de Azevedo
-Ra: 811455 
-``` 
+    Nome: Antônio Cícero Amorim de Azevedo
+    Ra: 811455 
 ### 1 - Questão
 A notação big-O é responsável por descrever o crescimento temporal de um algoritmo
 em relação ao tamanho de entrada da função
@@ -115,14 +113,10 @@ $$
 $$
 = n + n² + n^5
 $$
-A complexidade se da na ordem de $O(n⁴)$
+A complexidade se da na ordem de $O(n⁵)$
 
 
 ### 5 - Questão
 A afirmação é falsa, mesmo que a complexidade do algoritmo B seja menor que a do algoritmo A
 um algoritmo apresenta outros fatores que influenciam na sua velocidade total.
-
-
-
-
 
