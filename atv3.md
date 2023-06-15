@@ -15,7 +15,7 @@
 - Min _Heap_:
     - O nó pai é **menor** que o nó filho.
 
-##### Árvore binária -> Heap (hepify):
+##### Árvore binária -> Heap (heapify):
 - Processo de transformar uma árvore binária em uma _heap_ (máxima ou minima)
 - Algorítimo para criar um _heap_ de máximo:
 ```py
@@ -34,3 +34,27 @@ def heapfy(vector, indice = 0):
         heapfy(vector, maior)
     return
 ```
+###### Análise da Complexidade do _Heapfy_:
+- Nessa análise vou declarar o nó da direta sendo o maior dado do vetor:
+- A quantidade de interações sera igual a altura da árvore.
+$$ T(n) = 1 + 1 + 1 + 1 + 1 + 2 + T(n-2^1) $$
+$$ T(n) = 7 + T(n-2^1) $$
+$$ T(n) = \sum_{i=1}^{h}T(n-2^i)$$
+- Sendo h igual a altura da árvore podemos chegar na seguinte equação:
+$$ n - 2^h = 0 $$
+$$ n  = 2^h $$
+$$ \log_{2}n = h $$
+ - Dessa forma:
+$$ T(n) = \sum_{i=1}^{h}7 + T(n-2^h) $$
+$$ T(n) = 7 * h + 0 $$
+$$ T(n) = 7 * \log_{2}n $$
+- Concluindo que a complexidade da função heapfy é na ordem de:
+$$ O(h) = O(\log_{2}n) $$
+
+###### Construção da Heap (_build_heap_):
+- Essa função é responsável por construir a heap utilizando o heapify, podendo
+ser de máximo ou minimo. 
+```py
+def build_heap(vector):
+    for i in range(len(vector)//2 - 1, -1, -1):
+        heapify(vector, i)```
