@@ -59,7 +59,7 @@ $$
 
 ##### Conclusão:
 Como o pior caso e o melhor caso tem o mesmo _bigO_ os casos intermediários
-também teram esse mesmo _bigO_, nesse caso _**n²**_.
+também terão esse mesmo _bigO_, nesse caso _**n²**_.
 
 $$
 T(n) = \frac{1}{n} * \sum_{j=0}^{n-1}n^2
@@ -164,7 +164,7 @@ $$ T(n) = n + T(\frac{n}{2}) + T(\frac{n}{2}) $$
 ###### Pior caso (divisão desbalanceada):
 - O pivô será o maior número do vetor. A divisão irá retornar um único vetor.
 $$ T(n) = n + T(n-1) + T(0) $$
-###### Caso Medio:
+###### Caso Médio:
 - Para esse caso irei utilizar a ideia de alternar entre pior e melhor caso
 $$ T(n) = n + 2T(\frac{n}{2}) $$
 $$ T(n) = n + 2(\frac{n}{2} + T(\frac{n}{2} - 1)) $$
@@ -194,7 +194,7 @@ $$ \frac{n + 2}{3}= 2^k $$
 $$ \log_{2}({\frac{n + 2}{3}})= \log2^k $$
 $$ \log_{2}({\frac{n + 2}{3}})= k $$
 
-- Subtituindo o k na equação principal:
+- Substituindo o k na equação principal:
 $$ T(n) = 2(n * \log_{2}({\frac{n + 2}{3}})- 2(2^{\log_{2}({\frac{n + 2}{3}})}
 - 1)) $$
 $$ T(n) = 2(n * log_{2}(n+2) - log_{2}3 - 2(\frac{n + 2}{3} - 1)) $$
@@ -229,7 +229,7 @@ def ShellSort(vector):
         gap //= 2
 ```
 ###### Pior caso:
-- O vetor estará organizado de forma decrescente. Dessa forma ela entrata nos
+- O vetor estará organizado de forma decrescente. Dessa forma ela entrada nos
 dois loops a mesma quantidade de vezes logo:
 $$ T(n) = 2(n - \frac{n}{2}) + 4(n - \frac{n}{4}) + ... + 2^k(n - \frac{n}{2^k}) $$
 
@@ -262,7 +262,7 @@ $$ T(n) = n(\frac{2^k}{2} - 1 - \frac{k}{2}) $$
 $$ T(n) = n(\frac{2^{\log_{2}n}}{2} - 1 - \frac{\log_{2}n}{2}) $$
 $$ T(n) = \frac{n *2^{\log_{2}n}}{2} - n - \frac{n\log_{2}n}{2} $$
 
-- Removendo valores constantes que sao indiferentes para a complexidade assintótica.
+- Removendo valores constantes que são indiferentes para a complexidade assintótica.
 
 $$ T(n) = n *n - n - n\log_{2}n $$
 $$ T(n) = n^2 - n - n\log_{2}n $$
@@ -309,9 +309,9 @@ def merge(left, right):
     return ordenado
 ```
 ###### Análise da complexidade
-- Primeira etapa é a divisão do vetor até formar vários sub-vetores de tamanho um.
-- Segunda etapa é a comparação entre os sub-vetores de elementos únicos.
-- Terceira etapa é a aglutinação dos sub-vetores ordenados.
+- Primeira etapa é a divisão do vetor até formar vários sub vetores de tamanho um.
+- Segunda etapa é a comparação entre os sub vetores de elementos únicos.
+- Terceira etapa é a aglutinação dos sub vetores ordenados.
 
 $$ T(n) = 1 + T(\frac{n}{2}) + T(\frac{n}{2}) + 2 + 2 \frac{n}{2} + 2 $$
 
@@ -326,7 +326,7 @@ $$ T(n) = 2^2T(\frac{n}{2^2}) + 2n$$
  - Generalizando...
  $$T(n) =  2^kT(\frac{n}{2^k}) + kn$$
 
- - Criterio de parada:
+ - Critério de parada:
 $$ T(\frac{n}{2^k}) = ? $$
 $$ \frac{n}{2^k} = 1 $$
 $$ n = 2^k $$
