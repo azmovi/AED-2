@@ -176,7 +176,9 @@ Troca(7, 15)
                                          4   3-1 
 ```
 Agora o vetor está na ordem de uma heap de maximo.
+$\newline$
 ```vetor = [17, 12, 15, 9, 8, 6, 7, 4, 3, -1]```
+$\newline$
 Próximo passo é fazer o processo de Heap Sort:
 
 Troca(17, -1)
