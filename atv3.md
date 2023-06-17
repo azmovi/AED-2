@@ -19,19 +19,19 @@
 - Processo de transformar uma árvore binária em uma _heap_ (máxima ou minima)
 - Algorítimo para criar um _heap_ de máximo:
 ```py
-def heapfy(vector, indice = 0):
+def heapfy(vector, n, indice = 0):
     maior = indice
     left = 2*indice + 1
     right = 2*indice + 2
 
-    if left < len(vector) and vector[left] > vector[maior]:
+    if left < n and vector[left] > vector[maior]:
         maior = left 
-    if right < len(vector) and vector[right] > vector[maior]:
+    if right < n and vector[right] > vector[maior]:
         maior = right
 
     if maior != indice:
         vector[indice], vector[maior] = vector[maior], vector[indice]
-        heapfy(vector, maior)
+        heapfy(vector, n,  maior)
     return
 ```
 ###### Análise da Complexidade do _Heapfy_:
@@ -57,7 +57,7 @@ ser de máximo ou minimo.
 ```py
 def build_heap(vector):
     for i in range(len(vector)//2 - 1, -1, -1):
-        heapify(vector, i)
+        heapify(vector, len(vector), i)
     return
 ```
 - O loop comecaçará pelo o possível pai mais a esquerda da árvore binária,
@@ -82,7 +82,7 @@ def heap_sort(vector):
     heap_build(vector)
     for i in range(n-1, -1, -1):
         vector[i], vector[0] = vector[0], vector[i]
-        heapify(vector[i:])
+        heapify(vector, i)
     return
 ```
 ###### Mostrando o passo a passo do **_Heap Sort_**
@@ -194,7 +194,7 @@ Troca(17, -1)
 ```
 ```vetor = [-1, 12, 15, 9, 8, 6, 7, 4, 3, 17]```
 $\newline$
-Remover o 17 da heap
+Remove(17)
 ```
                                                -1
                                                / \
@@ -205,16 +205,279 @@ Remover o 17 da heap
                                           / \  
                                          4   3  
 ```
-```vetor = [15, 12, 6, 9, 8, -1, 7, 4, 3, 17]```
+```vetor = [15, 12, 7, 9, 8, 6, -1, 4, 3, 17]```
 $\newline$
-Heapificar o valor -1
+Heapfy(-1)
 ```
                                                 15
                                                / \
                                               /   \
-                                             12    6
+                                             12    7
                                             / \   / \
-                                           9   8 -1   7
+                                           9   8 6  -1
                                           / \  
                                          4   3  
 ```
+```vetor = [3, 12, 7, 9, 8, 6, -1, 4, 15, 17]```
+$\newline$
+Troca(15, 3)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             12    7
+                                            / \   / \
+                                           9   8 6  -1
+                                          / \  
+                                         4   15  
+```
+```vetor = [3, 12, 7, 9, 8, 6, -1, 4, 15, 17]```
+$\newline$
+Remove(15)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             12    7
+                                            / \   / \
+                                           9   8 6  -1
+                                          /
+                                         4
+```
+```vetor = [12, 9, 7, 4, 8, 6, -1, 3, 15, 17]```
+$\newline$
+Heapfy(3)
+```
+                                                12
+                                               / \
+                                              /   \
+                                             9     7
+                                            / \   / \
+                                           4   8 6  -1
+                                          /
+                                         3
+```
+```vetor = [3, 9, 7, 4, 8, 6, -1, 12, 15, 17]```
+$\newline$
+Troca(12, 3)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             9     7
+                                            / \   / \
+                                           4   8 6  -1
+                                          /
+                                         12
+```
+```vetor = [3, 9, 7, 4, 8, 6, -1, 12, 15, 17]```
+$\newline$
+Remove(12)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             9     7
+                                            / \   / \
+                                           4   8 6  -1
+```
+```vetor = [9, 8, 7, 4, 3, 6, -1, 12, 15, 17]```
+$\newline$
+Heapfy(3)
+```
+                                                9
+                                               / \
+                                              /   \
+                                             8     7
+                                            / \   / \
+                                           4   3 6  -1
+```
+```vetor = [-1, 8, 7, 4, 3, 6, 9, 12, 15, 17]```
+$\newline$
+Troca(9, -1)
+```
+                                               -1
+                                               / \
+                                              /   \
+                                             8     7
+                                            / \   / \
+                                           4  3  6   9
+```
+```vetor = [-1, 8, 7, 4, 3, 6, 9, 12, 15, 17]```
+$\newline$
+Remove(9)
+```
+                                               -1
+                                               / \
+                                              /   \
+                                             8     7
+                                            / \   /
+                                           4  3  6
+```
+```vetor = [8, 4, 7, -1, 3, 6, 9, 12, 15, 17]```
+$\newline$
+Heapfy(-1)
+```
+                                                8
+                                               / \
+                                              /   \
+                                             4     7
+                                            / \   /
+                                          -1   3 6
+```
+```vetor = [6, 4, 7, -1, 3, 8, 9, 12, 15, 17]```
+$\newline$
+Troca(8, 6)
+```
+                                                6
+                                               / \
+                                              /   \
+                                             4     7
+                                            / \   /
+                                          -1   3 8
+```
+```vetor = [6, 4, 7, -1, 3, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(8)
+```
+                                                6
+                                               / \
+                                              /   \
+                                             4     7
+                                            / \
+                                          -1   3
+```
+```vetor = [7, 4, 6, -1, 3, 8, 9, 12, 15, 17]```
+$\newline$
+Heapfy(6)
+```
+                                                7
+                                               / \
+                                              /   \
+                                             4     6
+                                            / \
+                                          -1   3
+```
+```vetor = [7, 4, 6, -1, 3, 8, 9, 12, 15, 17]```
+$\newline$
+Troca(7, 3)
+```
+                                                7
+                                               / \
+                                              /   \
+                                             4     6
+                                            / \
+                                          -1   3
+```
+```vetor = [3, 4, 6, -1, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Troca(7, 3)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             4     6
+                                            / \
+                                          -1   7
+```
+```vetor = [3, 4, 6, -1, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(7)
+```
+                                                3
+                                               / \
+                                              /   \
+                                             4     6
+                                            /
+                                          -1
+```
+```vetor = [6, 4, 3, -1, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Heapfy(3)
+```
+                                                6
+                                               / \
+                                              /   \
+                                             4     3
+                                            /
+                                          -1
+```
+```vetor = [-1, 4, 3, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Troca(6, -1)
+```
+                                               -1
+                                               / \
+                                              /   \
+                                             4     3
+                                            /
+                                           6
+```
+```vetor = [-1, 4, 3, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(6)
+```
+                                               -1
+                                               / \
+                                              /   \
+                                             4     3
+```
+```vetor = [4, -1, 3, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Heapfy(-1)
+```
+                                                4
+                                               / \
+                                              /   \
+                                             -1    3
+```
+```vetor = [3, -1, 4, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(4)
+```
+                                                3
+                                               /
+                                              /
+                                             -1    
+```
+```vetor = [3, -1, 4, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(4)
+```
+                                                3
+                                               /
+                                              /
+                                             -1    
+```
+```vetor = [3, -1, 4, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Heapfy(3)
+```
+                                                3
+                                               /
+                                              /
+                                             -1    
+```
+```vetor = [-1, 3, 4, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Troca(3, -1)
+```
+                                               -1
+                                               /
+                                              /
+                                             3    
+```
+```vetor = [-1, 3, 4, 6, 7, 8, 9, 12, 15, 17]```
+$\newline$
+Remove(3)
+```
+                                               -1
+```
+- Um elemento na heap, dessa forma ela se encontra ordenada, dessa forma nosso
+vetor de elementos é:
+
+```vetor = [-1, 3, 4, 6, 7, 8, 9, 12, 15, 17]```
+
+
+### 2 - Questão 
+- Qual é a complexidade do _**Heap Sort**_ no pior caso:
