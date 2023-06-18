@@ -523,13 +523,13 @@ def heap_sort(vector):
     return
 
 ```
-- O algortimo transforma todo vetor em uma _Heap_.
+- O algoritmo transforma todo vetor em uma _Heap_.
 - Independente do caso, ele terá a mesma complexidade.
 $$ T(n) = T(\text{BuildHeap}) + \sum_{i=1}^{n-1}(2+T(\text{heapify}(n-i))) $$
 $$ T(n) = n*\log_{2}n  - \log_{2}n + \sum_{i=1}^{n-1}2+\sum_{i=1}^{n-1}T(\text{heapify}(n-i)) $$
 $$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + \sum_{i=1}^{n-1}T(\text{heapify}(n-i)) $$
 $$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + \sum_{i=1}^{n-1}\log_{2}(n-i) $$
-- Desenvolvendo o somátorio:
+- Desenvolvendo o somatório:
 $$ \sum_{i=1}^{n-1}\log_{2}(n-i) = \log_{2}(n-1) + \log_{2}(n-2) +... + \log_{2}(n-(n-1)) $$
 $$ \sum_{i=1}^{n}\log_{2}(n-i) = \log_{2}(n-1) * (n-2) * ...* \log_{2}(1) $$
 $$ \sum_{i=1}^{n}\log_{2}(n-i) = \log_{2} n! $$
@@ -549,5 +549,38 @@ $$ O(n\log_{2}n) $$
 
 
 ### 3 - Questão 
-- Provar que nenhum algortimo de ordenação baseado em comparções (trocas) pode ter
+- Provar que nenhum algoritmo de ordenação baseado em comparações (trocas) pode ter
 complexidade menor que _O_($n\log_{2}n$)
+- Podemos abstrair que todo algoritmo de ordenação pode ser representado por uma
+árvore binária. 
+- Outro fator será que as folhas dessa árvore serão todas as permutações possíveis
+de um determinador vetor, ou seja _n!_
+- Para o pior caso o algoritmo terá que fazer h comparações, sendo h a altura da
+árvore binária.
+- Dessa forma se uma árvore estiver perfeita o número máximo de filhos será igual
+a $2^k$ 
+- Com isso chegar a uma possível conclusão:
+$$ 2^k \geq n! $$
+- Desenvolvendo a expressão:
+$$ \log_{2}2^k \geq \log_{2}n! $$
+$$ k \geq \log_{2}n! $$
+$$ k \geq \log_{2}(n * (n-1) * (n-2)*... * 1) $$
+$$ k \geq \log_{2}(n) + \log_{2}(n-1) + \log_{2}(n-2)+... + \log_{2}(1) $$
+$$ k \geq \sum_{i=1}^{n} \log_{2}i $$
+$$ k \geq \int_{1}^{n} \log_{2}x * dx$$
+- Desenvolvendo a integral:
+$$ \int \log_{2}x * dx = x*\log_{2}x - \frac{x}{\ln2} $$
+
+$$ \int_{1}^{n} \log_{2}x * dx = (n*\log_{2}n - \frac{n}{\ln2} ) - (1*\log_{2}1 - \frac{1}{\ln2} )$$
+$$ \int_{1}^{n} \log_{2}x * dx = n*\log_{2}n - \frac{n}{\ln2}  + \frac{1}{\ln2} )$$
+- Voltando para a equação inicial:
+
+$$ k \geq n*\log_{2}n - \frac{n}{\ln2}  + \frac{1}{\ln2}  $$
+
+- Dessa forma chegamos que o limite inferior de um algoritmo de ordenação baseado
+em comparações é:
+$$ \varOmega (n*\log_{2}n) $$
+
+### 4 - Questão 
+#### a)
+- Explicar o funcionamento do **_Bucket Sort_**
