@@ -63,13 +63,22 @@ def build_heap(vector):
 - O loop comecaçará pelo o possível pai mais a esquerda da árvore binária,
 chamando a funçao do heapify.
 ###### Complexidade do do _Build Heap_:
-$$ T(n) = \sum_{i = 0}^{\frac{n}{2} - 1} \log_{2}n $$
-$$ T(n) = (\frac{n}{2} - 1) * \log_{2}n $$
-$$ T(n) = \frac{n*\log_{2}n }{2} - \log_{2}n  $$
-- Removendo as constantes:
-$$ T(n) = n*\log_{2}n  - \log_{2}n  $$
-- Dessa forma chegamas que a complexidade da funçao _build heap_:
-$$ O(n*log_{2}n) $$
+$$ T(n) = \sum_{i = 0}^{\frac{n}{2} - 1} heapify(\frac{n}{2}-1-i) $$
+$$ T(n) = \sum_{i = 0}^{\frac{n}{2} - 1} \log_{2}(\frac{n}{2}-1-i) $$
+$$ T(n) = \log_{2}\frac{n}{2} - 1 + \log_{2}\frac{n}{2} - 2 + ...+\log_{2}
+\frac{n}{2}- \frac{n}{2} $$
+- Usando a propriedades do logaritmo.
+$$ T(n) = \log_{2}((\frac{n}{2} - 1) *(\frac{n}{2} - 2) * ...* (\frac{n}{2}- \frac{n}{2}))$$
+$$ T(n) = \log_{2}\frac{n}{2}!$$
+- Usando a aproximação de Stirling:
+$$ \frac{n}{2}! \approx \frac{n}{2} * \log_{2}\frac{n}{2} - \frac{n}{2} + O(\log_{2} \frac{n}{2} )$$
+
+- Removendo as constantes.
+$$ T(n) = n * \log_{2}n - n + O(\log_{2}n ) $$
+- Dessa forma chegamos que o bigO do _Build Heap_ é
+
+$$ O(n \log_{2}n)$$
+
 
 ###### Desenvolvendo a lógica o _Heap Sort_
 - Apenas a ultima folha pode ser retirada da heap.
@@ -481,3 +490,64 @@ vetor de elementos é:
 
 ### 2 - Questão 
 - Qual é a complexidade do _**Heap Sort**_ no pior caso:
+- Algortimo complexo a baixo:
+```py
+def heapfy(vector, n, indice = 0):
+    """  """
+    maior = indice
+    left = 2*indice + 1
+    right = 2*indice + 2
+
+    if left < n and vector[left] > vector[maior]:
+        maior = left 
+    if right < n and vector[right] > vector[maior]:
+        maior = right
+
+    if maior != indice:
+        vector[indice], vector[maior] = vector[maior], vector[indice]
+        heapfy(vector, n,  maior)
+    return
+
+def build_heap(vector):
+    """  """
+    for i in range(len(vector)//2 - 1, -1, -1):
+        heapify(vector, len(vector), i)
+    return
+
+def heap_sort(vector):
+    """  """
+    heap_build(vector)
+    for i in range(n-1, -1, -1):
+        vector[i], vector[0] = vector[0], vector[i]
+        heapify(vector, i)
+    return
+
+```
+- O algortimo transforma todo vetor em uma _Heap_.
+- Independente do caso, ele terá a mesma complexidade.
+$$ T(n) = T(\text{BuildHeap}) + \sum_{i=1}^{n-1}(2+T(\text{heapify}(n-i))) $$
+$$ T(n) = n*\log_{2}n  - \log_{2}n + \sum_{i=1}^{n-1}2+\sum_{i=1}^{n-1}T(\text{heapify}(n-i)) $$
+$$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + \sum_{i=1}^{n-1}T(\text{heapify}(n-i)) $$
+$$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + \sum_{i=1}^{n-1}\log_{2}(n-i) $$
+- Desenvolvendo o somátorio:
+$$ \sum_{i=1}^{n-1}\log_{2}(n-i) = \log_{2}(n-1) + \log_{2}(n-2) +... + \log_{2}(n-(n-1)) $$
+$$ \sum_{i=1}^{n}\log_{2}(n-i) = \log_{2}(n-1) * (n-2) * ...* \log_{2}(1) $$
+$$ \sum_{i=1}^{n}\log_{2}(n-i) = \log_{2} n! $$
+
+- Usando novamente a aproximação de Stiring:
+
+$$ \log_{2}n! \approx n * \log_{2}n - n + O(\log_{2}n)$$
+
+- Colocando da equação principal:
+
+$$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + \log_{2}n! $$
+$$ T(n) = n*\log_{2}n  - \log_{2}n + 2n + n * \log_{2}n - n + O(\log_{2}n)$$
+$$ T(n) = 2n*\log_{2}n  - \log_{2}n + n + O(\log_{2}n)$$
+- Com essa equação podemos perceber que a complexidade do _**Heap Sort**_ é:
+$$ O(n\log_{2}n) $$
+
+
+
+### 3 - Questão 
+- Provar que nenhum algortimo de ordenação baseado em comparções (trocas) pode ter
+complexidade menor que _O_($n\log_{2}n$)
