@@ -582,5 +582,5 @@ em comparações é:
 $$ \varOmega (n*\log_{2}n) $$
 
 ### 4 - Questão 
-#### a)
-- Explicar o funcionamento do **_Bucket Sort_**
+##### a) Explicar o funcionamento do **_Bucket Sort_**:
+- 
