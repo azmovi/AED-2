@@ -583,4 +583,83 @@ $$ \varOmega (n*\log_{2}n) $$
 
 ### 4 - Questão 
 ##### a) Explicar o funcionamento do **_Bucket Sort_**:
-- 
+- Sua ideia geral se da com a criação de k baldes, sendo $k \leq n$
+- Os valores do vetor são normalizados para cada valor cair no seu respectivo 
+balde.
+- Caso tenha mais de um valor presente em um balde é feita a ordenação por
+comparação.
+outros
+- Tendo seu maior desempenho a ordenação de um vetor que está uniformemente distribuída.
+$$ \text{balde[i]} =  \frac{vetor[i] - min(vetor)}{max(vetor) - min(vetor)}$$
+
+##### b) Ordenar um vetor baseado no _Bucket Sort_:
+    [7, 4, 15, 9, -1, 6, 17, 12, 3, 8] 
+- Amplitude do vetor = max(vetor) - min(vetor)
+- A quantidade de buckets será = n = 10
+- buckets = [[], [], [], [], [], [], [], [], [], []]
+- tamanho de um balde = round(amplitude/quantidade de baldes) = 2
+
+- Primeira iteração(7): 
+$$ index = \frac{7 - (-1)}{2}$$
+$$ index = 4  $$
+- buckets = [[], [], [], [], [7], [], [], [], [], []]
+
+- Segunda iteração(4):
+$$ index = \frac{4 - (-1)}{2}$$
+$$ index = 2,5 $$
+$$ index = 2 $$
+- buckets = [[], [], [4], [], [7], [], [], [], [], []]
+
+- Terceira iteração(15):
+$$ index = \frac{15 - (-1)}{2}$$
+$$ index = 8 $$
+- buckets = [[], [], [4], [], [7], [], [], [], [15],[]]
+
+- Quarta iteração(9):
+$$ index = \frac{9 - (-1)}{2}$$
+$$ index = 5 $$
+- buckets = [[], [], [4], [], [7], [9], [], [], [15], []]
+
+    [7, 4, 15, 9, -1, 6, 17, 12, 3, 8] 
+- Quinta iteração(-1):
+$$ index = \frac{-1 - (-1)}{2}$$
+$$ index = 0 $$
+- buckets = [[-1], [], [4], [], [7], [9], [], [], [15], []]
+
+- Sexta iteração(6):
+$$ index = \frac{6 - (-1)}{2}$$
+$$ index = 3,5 $$
+$$ index = 3 $$
+- buckets = [[-1], [], [4], [6], [7], [9], [], [], [15], []]
+
+- Setima iteração(17):
+$$ index = \frac{17 - (-1)}{2}$$
+$$ index = 2$$
+- buckets = [[-1], [], [4], [6], [7], [9], [], [], [15], [17]]
+
+- Oitava iteração(12):
+$$ index = \frac{12 - (-1)}{2}$$
+$$ index = 6,5$$
+$$ index = 6$$
+- buckets = [[-1], [], [4], [6], [7], [9], [12], [], [15], [17]]
+
+- Nona iteração(3):
+$$ index = \frac{3 - (-1)}{2}$$
+$$ index = 2$$
+- buckets = [[-1], [], [4, 3], [6], [7], [9], [12], [], [15], [17]]
+
+- Decima iteração(8):
+$$ index = \frac{8 - (-1)}{2}$$
+$$ index = 4.5$$
+$$ index = 4$$
+- buckets = [[-1], [], [4, 3], [6], [7, 8], [9], [12], [], [15], [17]]
+
+- Após a entrada de todos os valores nos seus respectivos baldes, ocorre a
+ordenação por comparação por baldes:
+- buckets = [[-1], [], [3, 4], [6], [7, 8], [9], [12], [], [15], [17]]
+
+- E depois a concatenação dos valores em um único vetor de forma ordenada:
+
+    ```[7, 4, 15, 9, -1, 6, 17, 12, 3, 8]```
+### 5 - Questão 
+- Calcular a complexidade do _**Bucket Sort**_
