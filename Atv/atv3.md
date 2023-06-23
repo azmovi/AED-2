@@ -662,4 +662,22 @@ ordenação por comparação por baldes:
 
     ```[7, 4, 15, 9, -1, 6, 17, 12, 3, 8]```
 ### 5 - Questão 
-- Calcular a complexidade do _**Bucket Sort**_
+- Calcular a complexidade do _**Bucket Sort**_ para caso médio.
+```py
+def bucket_sort(vetor):
+    menor = min(vetor)
+    maior = max(vetor)
+    amplitude = maior - menor
+    size_bucket = round(amplitude/len(vetor))
+    baldes = [[] for i in range(len(vetor))]
+    for valor in vetor:
+        indice = int((valor - menor) / size_bucket)
+        baldes[indice].append(valor)
+
+    resultado = []
+    for balde in baldes:
+        resultado += sorted(balde)
+
+    return resultado
+```
+$$ T(n) = n + n + 1 + 1 + n + n 
