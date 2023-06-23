@@ -680,4 +680,42 @@ def bucket_sort(vetor):
 
     return resultado
 ```
-$$ T(n) = n + n + 1 + 1 + n + n 
+$$ T(n) = n + n + 1  + 1 + n +  \text{Ordenação} + \text{Concatenação} $$
+- Para inicio de análise vamos entender a ordenação.
+- Onde $n_{i}$ é o numero de itens em um balde i
+- Para o calculo do  tempo médio irei utilizar a esperança E($n_{i}^{2}$)
+- Vou declarar que $X_{ij}$ será uma variável aleatória
+    - $X_{ij}$ = 1, se existir um elemento j no balde i
+    - $X_{ij}$ = 0, se não existir um elemento j no balde i
+- Dessa forma temos:
+$$ n_{i} = \sum_{j=1}^{n}X_{ij} $$
+$$ E(n_{i}^2) = E(\sum_{j=1}^{n}X_{ij} * \sum_{l=1}^{n}X_{il})$$
+$$ = E(\sum_{j=1}^{n} X_{ij} * \sum_{l=1}^{n}X_{il})$$
+$$ = E(\sum_{j=1}^{n} \sum_{l=1}^{n}X_{ij} * X_{il})$$
+- Separando os casos que _j_ é igual a _l_ e o caso que _j_ é diferente _l_.
+$$ = E(\sum_{j=1}^{n} X_{ij}^{2}) + E(\sum_{1\leq j, l \leq n} \sum_{j \neq l} X_{ij}X_{il}) =  \sum_{j=1}^{n} E(X_{ij}^{2}) + \sum_{1\leq j, l \leq n} \sum_{j \neq l} E(X_{ij}X_{il}) $$
+
+- Além disso a probabilidade de $X_{ij}$ ser 1 será de $\frac{1}{k}$.
+- E a probabilidade de $X_{ij}$ ser 0 será de $1 - \frac{1}{k}$.
+$$ E(X_{ij}^{2}) = 1^2 \frac{1}{k} + 0^2 (1 - \frac{1}{k}) $$
+$$ E(X_{ij}^{2})  = \frac{1}{k}$$
+$$ E(X_{ij}X_{il}) = 1 * \frac{1}{k} * \frac{1}{k} $$
+$$ E(X_{ij}X_{il}) =  \frac{1}{k^2} $$
+- Colocando na equação principal temos:
+$$ \sum_{j=1}^{n} E(X_{ij}^{2}) + \sum_{1\leq j, l \leq n} \sum_{j \neq l} E(X_{ij}X_{il}) = \sum_{j=1}^{n} \frac{1}{k} + \sum_{1\leq j, l \leq n} \sum_{j \neq l} \frac{1}{k^{2}} $$
+$$ = n * \frac{1}{k} + n(n-1)* \frac{1}{k^{2}} $$
+$$ = \frac{n^2 + nk - n}{k^2} $$
+
+- Por fim a complexidade será:
+$$ O(\sum_{i=1}^{k} X_{ij}^2) = O(\sum_{i=0}^{k} (\frac{n^2 + nk - n}{k^2})) $$
+$$ = O(\sum_{i=0}^{k} (\frac{n^2 + nk - n}{k^2})) $$
+$$ = O(\sum_{i=0}^{k} \frac{n^2}{k^2} + \sum_{i=0}^{k} \frac{nk}{k^2} - \sum_{i=0}^{k} \frac{n}{k^2})  $$
+$$ = O(\frac{n^2}{k} + n -  \frac{n}{k})  $$
+- Juntando a Concatenação dos baldes k baldes teremos:
+$$ = O(\frac{n^2}{k} + n -  \frac{n}{k} + k)  $$
+- Dessa forma percebemos que se k for n teremos:
+$$ = O(\frac{n^2}{n} + n -  \frac{n}{n} + n)  $$
+$$ = O(n + n - 1 + n)  $$
+$$ = O(3n - 1) $$
+- E finalmente chegamos em:
+$$ = O(n) $$
