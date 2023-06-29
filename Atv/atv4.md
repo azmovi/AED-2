@@ -54,7 +54,15 @@ def postoder(node):
 
 ### 2 - Questão 
 - Provar que que a busca em um árvore binária pode variar de logarítmica a linear
-
+```py
+def search_tree(no, valor):
+    if no == None or no.key == key:
+        return x
+    if no.key > k:
+        return search_tree(no.left, k)
+    else:
+        return search_tree(no.right, k)
+```
 Dado um árvore com N nós, teremos:
 - L nós na subárvore a esquerda
 - N - L - 1 nós na subárvore a direita
@@ -63,7 +71,7 @@ $$ T(N) = T(L) + T(N-L-1) + C $$
 - Sendo $C$ uma constante, que pode representar uma atribuição, uma chamada de
 função como print(), len() entre outras coisas que não dependem do tamanho da
 árvore e executam com tempo de complexidade O(1).
-###### Melhor caso: árvore binária pefeita.
+###### Melhor caso: árvore binária perfeita.
 
 $$ T(N) = T(\frac{N}{2}) + T(\frac{N}{2}) + C $$
 $$ T(N) = 2T(\frac{N}{2}) + C $$
@@ -120,7 +128,48 @@ um item em uma árvore binária de busca pode variar entre:**
 $$O(\log_{2}n)\text{ ate }O(n)$$
 
 
+### 3 - Questão
+- Explicar o algoritmo de inserção em uma árvore binária
+```py
+def insert_tree(tree, novo_no):
+    x = tree.root
+    y = None
+    while x != None:
+        y = x
+        if novo_no.key < x.key:
+            x = x.left
+        else:
+            x = x.right
 
+    novo_no.pai = y
+    if y == None:
+        tree.root = novo_no
+    else:
+        if y.key > novo_no.key:
+            y.left = novo_no
+        else:
+            y.right = novo_no
+    return 
+```
+- Recebemos como parâmetros a instancia/objeto que representa uma árvore binária
+que queremos analisar e uma outra instancia/objeto que representa um nó na qual
+iremos inserir nesse árvore binária.
 
+- Após isso passamos para um loop do tipo _while_ para encontrar a posição que
+o nosso nó novo deve estar localizado na árvore binária seguindo a regra que o
+filho direito deve ser obrigatoriamente **maior** que o seu pai, e o filho esquerdo
+deve ser obrigatoriamente **menor** que seu pai.
 
+- Quando sair do loop, devemos verificar se a árvore era vazia ou não. Dessa forma,
+se ela for vazia o novo valor sera a própria raiz da árvore binária.
 
+- Caso não seja vazia verificamos em que ramo o novo valor se encontra, se ele for
+maior que seu pai irá para a direita se não ele irá para a esquerda, finalizando 
+o algoritmo de inserção.
+
+### 4 - Questão
+- Explicar o algoritmo de remoção de um nó em uma árvore binária.
+```py
+def remove_tree(tree, no):
+    
+```

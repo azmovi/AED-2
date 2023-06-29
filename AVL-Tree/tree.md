@@ -12,10 +12,13 @@
 - **Folha**: nó sem filho.
 - **Altura**: geração de um nó na árvore.
 #### Árvore Binária de Busca:
-- O pai deve apresentar no maximo 2 filhos.
+- O pai deve apresentar no máximo 2 filhos.
 - O filho da esquerda um valor menor que o seu pai.
 - O filho da direita tem um valor maior que seu pai
 
 ### Árvore Binária de Busca Balanceada - AVL
+- A diferença entre uma árvore de busca normal e uma balanceada é existência de
+fator de balanceamento que pode atingir apenas 3 valores (-1, 0, 1).
 
+$\text{fator de balanceamento} = \text{altura subárvore esquerda} - \text{altura subárvore direita}$
 
