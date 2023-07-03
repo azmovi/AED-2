@@ -220,5 +220,23 @@ Funcionamento da função _transplant_
 sua posição para um novo nó.
 
 ### 5 - Questão 
-- Duas perguntas a certa das árvore binária de busca.
+- Duas algoritmos sobre árvore binária de busca.
 ###### a) Algoritmo para encontrar o menor elemento:
+```py
+def min_tree(tree):
+    no = tree.root
+    while no.left != None:
+        no = no.left
+    return no.data
+```
+###### b) Algoritmo para encontrar a altura de um nó:
+```py
+def altura(no):
+    if no == None:
+        return 1
+    else:
+        esquerda = altura(no.left)
+        direita = altura(no.right)
+        return max(esquerda, direita)
+    return
+```
