@@ -170,6 +170,55 @@ o algoritmo de inserção.
 ### 4 - Questão
 - Explicar o algoritmo de remoção de um nó em uma árvore binária.
 ```py
-def remove_tree(tree, no):
-    
+def remove_no(tree, no):
+    if no.left == None:
+        transplant(tree, no, no.right)
+    elif no.right == None:
+        transplant(tree, no, no.left)
+    else:
+        sucessor = tree_minimum(no.right)
+        if sucessor != no.right:
+            transplant(tree, sucessor, sucessor.right)
+            sucessor.right = no.right
+            no.right = None
+            sucessor.right.pai = sucessor
+        transplant(tree, no, sucessor)
+        sucessor.left = no.left
+        no.left = None
+        sucessor.left.pai = sucessor
+    return
+
+def transplant(tree, atual, novo):
+    if atual.pai == None:
+        tree.root = novo
+    elif atual == atual.pai.left:
+        atual.pai.left = novo
+    else:
+        atual.pai.right = novo
+    if novo != None:
+        novo.pai = atual.pai
+        atual.pai = None
+    return 
+
+def tree_minimum(no):
+    while no.left != None:
+        no = no.left
+    return no
+
 ```
+Teremos 3 casos possíveis na remoção de um nó
+- Se o nó **não** tiver um filho:
+    - Basta remover a folha normalmente.
+- Se o nó tem **um** filho:
+    - o filho do nó removido deve-se se juntar ao pai do nó removido.
+- Se o nó tem **dois** filhos:
+    - Devemos encontrar o sucessor da direita do nó removido na sua sub árvore.
+    A remoção do sucessor na sua posição atual entra em um desses 3 casos vistos.
+
+Funcionamento da função _transplant_
+- Ela é responsável por trocar as referencias de dois nos, onde o nó atual perde
+sua posição para um novo nó.
+
+### 5 - Questão 
+- Duas perguntas a certa das árvore binária de busca.
+###### a) Algoritmo para encontrar o menor elemento:
