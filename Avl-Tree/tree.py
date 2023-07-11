@@ -15,7 +15,7 @@ class Avl():
     def preorder(self, no: Node = None):
         if no == None:
             return 
-        print(no.value, self.get_pai(no) )
+        print(no.value, self.fator_balanceamento(no) )
         self.preorder(no.left)
         self.preorder(no.right)
         return
@@ -80,75 +80,6 @@ class Avl():
                 self.right_rotate(xpto)
                 self.left_rotate(no)
                 return
-        return
-
-    def deletion(self, no: Node) -> bool:
-        raiz = False
-
-        if no != None:
-            return False
-
-        if no.left != None:
-            filho_esquerdo = no.left
-        if no.right != None:
-            filho_direito = no.right
-
-        if no.pai != None:
-            no_pai = no.pai
-
-        else:
-            raiz = True
-
-        #caso 1 -> No folha
-        if no.left == None and no.right == None:
-            if no.pai == None:
-                self.raiz = None
-                return True
-
-            else:
-                del(no)
-                self.rebalanceamento_del(no_pai)
-                return True
-
-            return False
-
-        return
-
-    def rebalanceamento_del(self, no):
-        while no != None:
-            self.update_altura(no)
-            fb = self.fator_balanceamento(no)
-            if fb not in [1, 0, -1]:
-                no = no.pai
-        return
-    
-    def rotaçao_delete(self, no, fb):
-
-        if no.left != None:
-            fb_left = self.fator_balanceamento(no.left)
-
-        if fb > 1:
-            if no.left and fb_left >= 0:
-                self.left_rotate(no)
-                return
-
-            else:
-                xpto = self.left_rotate(no)
-                self.right_rotate(xpto)
-                return
-
-            return
-
-        if fb <= -1:
-            if no.left and fb_left <= 0:
-                self.left_rotate(no)
-                return
-            else:
-                xpto = self.right_rotate(no)
-                self.left_rotate(xpto)
-                return
-            return
-
         return
 
     def update_altura(self, no: Node) -> Node:
@@ -229,6 +160,26 @@ class Avl():
 
         return
 
+    def find(self, no: Node) -> bool:
+        test = self.root
+        while test:
+            if no.value > test.value:
+                test = test.right
+            elif no.value < test.value:
+                test = test.left
+            else:
+                return True
+        return False
+
+    def remove_folha(self, no:Node)
+
+    def remove(self, valor:int):
+        no = Node(valor)
+        existe = self.find(no)
+        if existe:
+
+            return True
+        return False
 
 
 arvore = Avl()
@@ -242,6 +193,5 @@ arvore.insert(Node(61))
 arvore.insert(Node(8))
 arvore.insert(Node(9))
 
-arvore.deletion(no21)
-
+print(arvore.remove(9))
 arvore.preorder(arvore.root)
