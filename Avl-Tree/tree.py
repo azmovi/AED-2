@@ -15,17 +15,23 @@ class Avl():
     def preorder(self, no: Node = None):
         if no == None:
             return 
-        print(no.value, self.fator_balanceamento(no) )
+        print(no.value, self.fator_balanceamento(no))
         self.preorder(no.left)
         self.preorder(no.right)
         return
+
+    def get_value(self, no:Node):
+        if no == None:
+            return None
+        return no.value
 
     def get_pai(self, no:Node):
         if no.pai == None:
             return None
         return no.pai.value
 
-    def insert(self, no:Node):
+    def insert(self, valor:int):
+        no = Node(valor)
         x = self.root
         y = None
         while x != None:
@@ -47,11 +53,11 @@ class Avl():
 
 
         novo_no = no
-        self.rebalanceamento(no, novo_no)
+        self.rebalanceamento_insert(no, novo_no)
 
         return
 
-    def rebalanceamento(self, no:Node, novo_no:Node):
+    def rebalanceamento_insert(self, no:Node, novo_no:Node):
         while no != None:
             self.update_altura(no)
             fb = self.fator_balanceamento(no)
@@ -160,7 +166,8 @@ class Avl():
 
         return
 
-    def find(self, no: Node) -> bool:
+    def find(self, valor: int) -> bool:
+        no = Node(valor)
         test = self.root
         while test:
             if no.value > test.value:
@@ -168,30 +175,75 @@ class Avl():
             elif no.value < test.value:
                 test = test.left
             else:
-                return True
-        return False
-
-    def remove_folha(self, no:Node)
+                return test
+        return None
 
     def remove(self, valor:int):
-        no = Node(valor)
-        existe = self.find(no)
-        if existe:
+        no = self.find(valor)
+        if no:
+            if no == None:
+                return False
+
+            raiz = False
+            pai_esquerdo = False
+            pai_direito = False
+            filho_direito = False
+            filho_esquerdo = False
+            folha = False
+
+            if no.pai == None:
+                raiz = True
+            elif no.pai.left == no:
+                no.pai.left = None
+                pai_esquerdo= True
+
+            else:
+                no.pai.right = None
+                pai_direito = True
+
+            
+            if no.left == None and no.right == None:
+                folha = True
+            else:
+                if no.left is not None:
+                    filho_esquerdo = True
+                if no.right is not None:
+                    filho_direito = True
+
+
+            if folha:
+                self.rebalanceamento_remove(no.pai)
 
             return True
         return False
 
+    def rebalanceamento_remove(self, no:Node):
+        if no == None:
+            return
+        while no != None:
+            self.update_altura(no)
+            fb = self.fator_balanceamento(no)
+            if fb not in [1, 0, -1]:
+                self.rotation_remove(no, fb)
+            no = no.pai
+        return
+
+    def rotation_remove(self, no:Node, fb:int):
+        if fb > 1:
+            if :
+
+        return
+
+
 
 arvore = Avl()
-arvore.insert(Node(33))
-arvore.insert(Node(13))
-arvore.insert(Node(11))
-no21 = Node(21)
-arvore.insert(no21)
-arvore.insert(Node(53))
-arvore.insert(Node(61))
-arvore.insert(Node(8))
-arvore.insert(Node(9))
-
-print(arvore.remove(9))
+arvore.insert(33)
+arvore.insert(13)
+arvore.insert(11)
+arvore.insert(21)
+arvore.insert(53)
+arvore.insert(61)
+arvore.insert(8)
+arvore.insert(9)
+arvore.remove(61)
 arvore.preorder(arvore.root)
