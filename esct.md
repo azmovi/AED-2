@@ -64,4 +64,32 @@ recuperou o acesso após a empresa ser adquirida por Elon Musk.
 
 ####  4. **Indicação de um vídeo**:
 ###### Vídeo:
+O vídeo retrata um pouco sobre o paradoxo da igualdade de gênero refere-se a uma 
+observação contraditória de que, mesmo em sociedades onde as normas e políticas 
+promovem a igualdade de oportunidades para homens e mulheres, ainda persistem 
+disparidades significativas entre os sexos em termos de representação e 
+participação em certas áreas. O estudo e a compreensão do paradoxo da igualdade 
+de gênero são importantes para identificar e abordar as barreiras remanescentes 
+que impedem a plena realização da igualdade de oportunidades e a equidade de gênero.
+
+[Link para o vídeo](https://www.youtube.com/watch?v=6qikNSQXpVI&list=PLWk5wkwHmv5-bV7V6yf3GwDZ4-eKWez9U&index=1&t=1178s&ab_channel=CGV)
+
+####  5. **Indicação de uma cientista ou pesquisadora**:
+###### Pesquisadora:
+Lívia Cardoso Docente, Universidade Federal de Sergipe, assim como a primeira
+questão ela é uma das pesquisadoras do artigo cientifico. Uma pesquisadora no 
+campo da educação, com foco em currículo, gênero, sexualidade e ensino de ciências.
+Seu trabalho abrange uma ampla gama de temas interligados, que visam compreender
+as complexas relações entre gênero, sexualidade e educação. Em suas pesquisas 
+sobre gênero e sexualidade no currículo, Lívia Cardoso analisa as políticas 
+públicas de educação, os materiais curriculares e as práticas pedagógicas, 
+buscando compreender como esses aspectos são abordados nas escolas. Ela examina 
+de que forma as concepções de gênero e sexualidade são construídas e negociadas 
+no ambiente escolar, e como essas representações influenciam as vivências e 
+identidades dos estudantes. Em resumo, o trabalho de Lívia Cardoso abrange 
+diversos aspectos interligados da educação, buscando compreender as dinâmicas 
+curriculares, as relações de gênero, a diversidade e as identidades no contexto 
+educacional. Sua pesquisa contribui para a reflexão crítica sobre as práticas 
+pedagógicas, visando promover uma educação mais inclusiva, equitativa e sensível 
+às questões de gênero e sexualidade.
 
