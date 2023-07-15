@@ -93,3 +93,6 @@ educacional. Sua pesquisa contribui para a reflexão crítica sobre as práticas
 pedagógicas, visando promover uma educação mais inclusiva, equitativa e sensível 
 às questões de gênero e sexualidade.
 
+####  5. **Indicação de uma cientista ou pesquisadora**:
+###### Pesquisadora:
+
