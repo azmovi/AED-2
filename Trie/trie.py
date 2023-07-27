@@ -81,7 +81,10 @@ class Trie():
         node, bit = self.search(char)
         if node != None:
             if node.child[0] == None and node.child[1] == None:
-                node.pai.child[bit] = None
+                if node.pai == None:
+                    self.root = None
+                else:
+                    node.pai.child[bit] = None
                 return True
 
             sucessor = node
@@ -114,15 +117,13 @@ class Trie():
         return False
 def menu():
 
-    print(
-            """
+    print("""
 [1] Printar a árvore a partir da raiz
 [2] Printar a árvore a partir da raiz
 [3] Inserção de uma letra
 [4] Remoção de uma letra
 [5] Sair
-
-            """)
+""")
     return
 
 def exec(option:int, trie: Trie):
@@ -146,7 +147,7 @@ def exec(option:int, trie: Trie):
         while char.isalpha() != True:
             print("Tipo errado, digite novamente")
             char = input('Valor > ')
-        valido = trie.insert(char)
+        valido = trie.insert(char.upper())
         if valido:
             print("Nó foi inserido")
         else:
@@ -157,7 +158,7 @@ def exec(option:int, trie: Trie):
         while char.isalpha() != True:
             print("Tipo errado, digite novamente")
             char = input('Valor > ')
-        valido = trie.remove(char)
+        valido = trie.remove(char.upper())
         if valido:
             print("Nó removido com sucesso")
         else:
@@ -181,7 +182,12 @@ def main():
     trie = Trie()
     while True:
         menu()
-        option = int(input("> "))
+        option = input("> ")
+        while option.isnumeric() == False:
+            print("informe um inteiro")
+            option = input("> ")
+
+        option = int(option)
         if option not in [1, 2, 3, 4, 5]:
             print("opção inválida")
             continue
