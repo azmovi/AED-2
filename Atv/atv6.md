@@ -216,3 +216,8 @@ da chave
 
 
 ### 4 - Questão 
+###### Mostrar que a complexidade de busca em uma _Skip List_ é igual a
+$O(\log_{d}{n})$:
+- A complexidade da _skip list_ está diretamente ligada com o fator de dispersão, 
+que é responsável pela probabilidade de um elemento ter um determinado nível, dado
+por $\frac{1}{d}$, sendo $d$ um número arbitrário.
