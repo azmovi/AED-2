@@ -63,23 +63,60 @@ que deve existir ao menos uma pessoa com o mesmo número de conhecidos em uma fe
 
 ### 4 - Questão 
 Conhecendo o _friendship graphs_ responda as generalizações:
-1. Quantos vértices possui um grafo Fn?
+1. **Quantos vértices possui um grafo Fn?**
     - $1 + 2*n$, 1 já que deve ter um vértice comum a todos os triângulos, e o 
     restante dos triângulos devem ter dois vértices, para que a sua soma dos vértices 
     de um triângulos dê exatamente 3 vértices.
-2. Explicar a lista de graus de um grafo Fn?
-    - O vértice central tem seu grau igual ao número total de triângulos, já que
-    ele será comum a todos. O restante dos vértices terão obrigatoriamente grau
-    igual a 2, ligado pelo vértice central e vértice que faz fronteira para fechar
-    o triângulo.
-3. Quantas arestas possui um grafo Fn?
+2. **Explicar a lista de graus de um grafo Fn?**
+    - O vértice central tem seu grau igual ao número total de triângulos vezes 
+    dois, já que ele será comum a todos os outros vértices presentes do grafo. 
+    O restante dos vértices terão grau igual a 2, já que estão fazendo fronteira
+    com o vértice central e vértice que responsavel pelo terceiro ponto do triangulo.
+3. **Quantas arestas possui um grafo Fn?**
     - Baseado no _Handshaking Lema_ temos:
     $$\sum_{i=1}^{n} d(v_{i}) = 2m$$ 
     - O somatório será igual a:
-    $$n + 2 + 2 + 2 + ... + 2 = 2*m$$
+    $$2n + 2 + 2 + 2 + ... + 2 = 2*m$$
     - Para cada triangulo, excluindo o vértice central, teremos 2 vértices com 
     grau igual a 2
-    $$n + 4*n = 2m$$
-    $$5n = 2m$$
-$$ m = \frac{5n}{2}$$
+    $$2n + 4*n = 2m$$
+    $$6n = 2m$$
+    $$ m = 3n $$
+    - Sendo n a quantidade de triângulos presente no _friendship graphs_. 
 
+### 5 - Questão 
+Dado um grafo bipartido G = (V, E). Demostre que o número máximo de arestas é igual
+a $\frac{v^2}{4}$
+
+- Um grafo bipartido é dado a partir $V = X \cup Y \text{e} \space X \cap Y = \empty \space$ 
+
+- Para chegar no número máximo de arestas devemos ter a mesma quantidade de vértices
+para o grupo $X$ e o grupo $Y$
+
+- Outro fator é que todos os vértices de $X$ devem estar relacionados com todos
+os vértices de $Y$
+
+- Como no exemplo a baixo:
+```mermaid
+graph
+    A---X
+    A---Y
+    A---Z
+    B---X
+    B---Y
+    B---Z
+    C---X
+    C---Y
+    C---Z
+```
+- Podemos perceber que o grau de todos os vértices será igual a o número de vértices
+sobre 2, chegamos a um possível somatório:
+$$\sum_{i=1}^{\frac{n}{2}} \frac{n}{2}$$
+
+- Expandindo o somatório chegamos em:
+$$\frac{n}{2} *\frac{n}{2}$$
+
+- Que por sua vez:
+$$ \frac{n^2}{4}$$
+
+- Sendo $n$ o número de vértices do nosso grafo bipartido.
