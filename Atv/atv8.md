@@ -60,3 +60,26 @@ $$2m = 2m + k$$
 $$0 = k$$
 - Chegamos a um absurdo , invalidando nossa hipóstase inicial e validando a proposta
 que deve existir ao menos uma pessoa com o mesmo número de conhecidos em uma festa.
+
+### 4 - Questão 
+Conhecendo o _friendship graphs_ responda as generalizações:
+1. Quantos vértices possui um grafo Fn?
+    - $1 + 2*n$, 1 já que deve ter um vértice comum a todos os triângulos, e o 
+    restante dos triângulos devem ter dois vértices, para que a sua soma dos vértices 
+    de um triângulos dê exatamente 3 vértices.
+2. Explicar a lista de graus de um grafo Fn?
+    - O vértice central tem seu grau igual ao número total de triângulos, já que
+    ele será comum a todos. O restante dos vértices terão obrigatoriamente grau
+    igual a 2, ligado pelo vértice central e vértice que faz fronteira para fechar
+    o triângulo.
+3. Quantas arestas possui um grafo Fn?
+    - Baseado no _Handshaking Lema_ temos:
+    $$\sum_{i=1}^{n} d(v_{i}) = 2m$$ 
+    - O somatório será igual a:
+    $$n + 2 + 2 + 2 + ... + 2 = 2*m$$
+    - Para cada triangulo, excluindo o vértice central, teremos 2 vértices com 
+    grau igual a 2
+    $$n + 4*n = 2m$$
+    $$5n = 2m$$
+$$ m = \frac{5n}{2}$$
+
