@@ -19,7 +19,7 @@
 - Processo de transformar uma árvore binária em uma _heap_ (máxima ou minima)
 - Algorítimo para criar um _heap_ de máximo:
 ```py
-def heapfy(vector, n, indice = 0):
+def heapify(vector, n, indice = 0):
     maior = indice
     left = 2*indice + 1
     right = 2*indice + 2
@@ -31,10 +31,10 @@ def heapfy(vector, n, indice = 0):
 
     if maior != indice:
         vector[indice], vector[maior] = vector[maior], vector[indice]
-        heapfy(vector, n,  maior)
+        heapify(vector, n,  maior)
     return
 ```
-###### Análise da Complexidade do _Heapfy_:
+###### Análise da Complexidade do _heapify_:
 - Nessa análise vou declarar o nó da direta sendo o maior dado do vetor:
 - A quantidade de interações sera igual a altura da árvore.
 $$ T(n) = 1 + 1 + 1 + 1 + 1 + 2 + T(n-2^1) $$
@@ -48,7 +48,7 @@ $$ \log_{2}n = h $$
 $$ T(n) = \sum_{i=1}^{h}7 + T(n-2^h) $$
 $$ T(n) = 7 * h + 0 $$
 $$ T(n) = 7 * \log_{2}n $$
-- Concluindo que a complexidade da função heapfy é na ordem de:
+- Concluindo que a complexidade da função heapify é na ordem de:
 $$ O(h) = O(\log_{2}n) $$
 
 ###### Construção da Heap (_build_heap_):
@@ -216,7 +216,7 @@ Remove(17)
 ```
 ```vetor = [15, 12, 7, 9, 8, 6, -1, 4, 3, 17]```
 $\newline$
-Heapfy(-1)
+heapify(-1)
 ```
                                                 15
                                                / \
@@ -255,7 +255,7 @@ Remove(15)
 ```
 ```vetor = [12, 9, 7, 4, 8, 6, -1, 3, 15, 17]```
 $\newline$
-Heapfy(3)
+heapify(3)
 ```
                                                 12
                                                / \
@@ -292,7 +292,7 @@ Remove(12)
 ```
 ```vetor = [9, 8, 7, 4, 3, 6, -1, 12, 15, 17]```
 $\newline$
-Heapfy(3)
+heapify(3)
 ```
                                                 9
                                                / \
@@ -325,7 +325,7 @@ Remove(9)
 ```
 ```vetor = [8, 4, 7, -1, 3, 6, 9, 12, 15, 17]```
 $\newline$
-Heapfy(-1)
+heapify(-1)
 ```
                                                 8
                                                / \
@@ -358,7 +358,7 @@ Remove(8)
 ```
 ```vetor = [7, 4, 6, -1, 3, 8, 9, 12, 15, 17]```
 $\newline$
-Heapfy(6)
+heapify(6)
 ```
                                                 7
                                                / \
@@ -402,7 +402,7 @@ Remove(7)
 ```
 ```vetor = [6, 4, 3, -1, 7, 8, 9, 12, 15, 17]```
 $\newline$
-Heapfy(3)
+heapify(3)
 ```
                                                 6
                                                / \
@@ -433,7 +433,7 @@ Remove(6)
 ```
 ```vetor = [4, -1, 3, 6, 7, 8, 9, 12, 15, 17]```
 $\newline$
-Heapfy(-1)
+heapify(-1)
 ```
                                                 4
                                                / \
@@ -460,7 +460,7 @@ Remove(4)
 ```
 ```vetor = [3, -1, 4, 6, 7, 8, 9, 12, 15, 17]```
 $\newline$
-Heapfy(3)
+heapify(3)
 ```
                                                 3
                                                /
@@ -492,7 +492,7 @@ vetor de elementos é:
 - Qual é a complexidade do _**Heap Sort**_ no pior caso:
 - Algortimo complexo a baixo:
 ```py
-def heapfy(vector, n, indice = 0):
+def heapify(vector, n, indice = 0):
     """  """
     maior = indice
     left = 2*indice + 1
@@ -505,7 +505,7 @@ def heapfy(vector, n, indice = 0):
 
     if maior != indice:
         vector[indice], vector[maior] = vector[maior], vector[indice]
-        heapfy(vector, n,  maior)
+        heapify(vector, n,  maior)
     return
 
 def build_heap(vector):
